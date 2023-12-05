@@ -11,14 +11,14 @@ import static io.restassured.filter.log.LogDetail.STATUS;
 import static io.restassured.http.ContentType.JSON;
 
 public class ReqresSpec {
-  public static RequestSpecification requestSpec = with()
+  public static RequestSpecification requestSpecification = with()
           .filter(withCustomTemplates())
           .log().uri()
           .log().headers()
           .log().body()
           .contentType(JSON);
 
-  public static ResponseSpecification responseSpec = new ResponseSpecBuilder()
+  public static ResponseSpecification responseSpecification = new ResponseSpecBuilder()
           .log(STATUS)
           .log(BODY)
           .build();

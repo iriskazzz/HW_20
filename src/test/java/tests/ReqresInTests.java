@@ -8,8 +8,8 @@ import static io.qameta.allure.Allure.step;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static specs.ReqresSpec.requestSpec;
-import static specs.ReqresSpec.responseSpec;
+import static specs.ReqresSpec.requestSpecification;
+import static specs.ReqresSpec.responseSpecification;
 
 public class ReqresInTests extends TestBase {
 
@@ -17,11 +17,11 @@ public class ReqresInTests extends TestBase {
   @DisplayName("Получение списка пользователей")
   void checkListUsersTest() {
     ListUsersResponseModel response = step("Список пользователей", () ->
-            given(requestSpec)
+            given(requestSpecification)
                     .when()
                     .get("/users?page=2")
                     .then()
-                    .spec(responseSpec)
+                    .spec(responseSpecification)
                     .statusCode(200)
                     .extract().as(ListUsersResponseModel.class)
     );
@@ -35,17 +35,17 @@ public class ReqresInTests extends TestBase {
   @Test
   @DisplayName("Проверка создания пользователя")
   void checkCreateTest() {
-    CreateBodyModel CreateBody = new CreateBodyModel();
-    CreateBody.setName("morpheus");
-    CreateBody.setJob("leader");
+    CreateBodyModel createBody = new CreateBodyModel();
+    createBody.setName("morpheus");
+    createBody.setJob("leader");
 
     CreateResponseModel response = step("Создание пользователя", () ->
-            given(requestSpec)
-                    .body(CreateBody)
+            given(requestSpecification)
+                    .body(createBody)
                     .when()
                     .post("/users")
                     .then()
-                    .spec(responseSpec)
+                    .spec(responseSpecification)
                     .statusCode(201)
                     .extract().as(CreateResponseModel.class)
     );
@@ -59,17 +59,17 @@ public class ReqresInTests extends TestBase {
   @Test
   @DisplayName("Проверка изменения данных пользователя")
   void checkUpdateTest() {
-    CreateBodyModel CreateBody = new CreateBodyModel();
-    CreateBody.setName("morpheus");
-    CreateBody.setJob("zion resident");
+    CreateBodyModel createBody = new CreateBodyModel();
+    createBody.setName("morpheus");
+    createBody.setJob("zion resident");
 
     CreateResponseModel response = step("Изменение данных пользователя", () ->
-            given(requestSpec)
-                    .body(CreateBody)
+            given(requestSpecification)
+                    .body(createBody)
                     .when()
                     .put("/users/2")
                     .then()
-                    .spec(responseSpec)
+                    .spec(responseSpecification)
                     .statusCode(200)
                     .extract().as(CreateResponseModel.class)
     );
@@ -83,27 +83,29 @@ public class ReqresInTests extends TestBase {
   @Test
   @DisplayName("Проверка удаления пользователя")
   void checkDeleteTest() {
-    given(requestSpec)
-            .when()
-            .delete("/users/65")
-            .then()
-            .spec(responseSpec)
-            .statusCode(204);
+    step("Удаление пользователя", () ->
+            given(requestSpecification)
+                    .when()
+                    .delete("/users/65")
+                    .then()
+                    .spec(responseSpecification)
+                    .statusCode(204)
+    );
   }
 
   @Test
   @DisplayName("Проверка неуспешной авторизации без пароля")
   void checkLoginUnsuccessfulTest() {
-    LoginBodyModel LoginBody = new LoginBodyModel();
-    LoginBody.setEmail("peter@klaven");
+    LoginBodyModel loginBody = new LoginBodyModel();
+    loginBody.setEmail("peter@klaven");
 
     ErrorModel response = step("Вызов метода авторищации", () ->
-            given(requestSpec)
-                    .body(LoginBody)
+            given(requestSpecification)
+                    .body(loginBody)
                     .when()
                     .post("/login")
                     .then()
-                    .spec(responseSpec)
+                    .spec(responseSpecification)
                     .statusCode(400)
                     .extract().as(ErrorModel.class)
     );
