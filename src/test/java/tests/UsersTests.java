@@ -18,84 +18,84 @@ import static specs.ReqresSpec.responseSpecification;
 @Feature("Actions with users")
 public class UsersTests extends TestBase {
 
-  @Test
-  @DisplayName("Получение списка пользователей")
-  void checkListUsersTest() {
-    ListUsersResponseModel response = step("Список пользователей", () ->
-            given(requestSpecification)
-                    .when()
-                    .get("/users?page=2")
-                    .then()
-                    .spec(responseSpecification)
-                    .statusCode(200)
-                    .extract().as(ListUsersResponseModel.class)
-    );
+    @Test
+    @DisplayName("Получение списка пользователей")
+    void checkListUsersTest() {
+        ListUsersResponseModel response = step("Список пользователей", () ->
+                given(requestSpecification)
+                        .when()
+                        .get("/users?page=2")
+                        .then()
+                        .spec(responseSpecification)
+                        .statusCode(200)
+                        .extract().as(ListUsersResponseModel.class)
+        );
 
-    step("Проверка данных из ответа", () -> {
-      assertEquals(2, response.getTotalPages());
-      assertEquals("https://reqres.in/#support-heading", response.getSupport().getUrl());
-    });
-  }
+        step("Проверка данных из ответа", () -> {
+            assertEquals(2, response.getTotalPages());
+            assertEquals("https://reqres.in/#support-heading", response.getSupport().getUrl());
+        });
+    }
 
-  @Test
-  @DisplayName("Проверка создания пользователя")
-  void checkCreateTest() {
-    CreateUserBodyModel createBody = new CreateUserBodyModel();
-    createBody.setName("morpheus");
-    createBody.setJob("leader");
+    @Test
+    @DisplayName("Проверка создания пользователя")
+    void checkCreateTest() {
+        CreateUserBodyModel createBody = new CreateUserBodyModel();
+        createBody.setName("morpheus");
+        createBody.setJob("leader");
 
-    CreateUserResponseModel response = step("Создание пользователя", () ->
-            given(requestSpecification)
-                    .body(createBody)
-                    .when()
-                    .post("/users")
-                    .then()
-                    .spec(responseSpecification)
-                    .statusCode(201)
-                    .extract().as(CreateUserResponseModel.class)
-    );
+        CreateUserResponseModel response = step("Создание пользователя", () ->
+                given(requestSpecification)
+                        .body(createBody)
+                        .when()
+                        .post("/users")
+                        .then()
+                        .spec(responseSpecification)
+                        .statusCode(201)
+                        .extract().as(CreateUserResponseModel.class)
+        );
 
-    step("Проверка данных из ответа", () -> {
-      assertEquals("morpheus", response.getName());
-      assertEquals("leader", response.getJob());
-    });
-  }
+        step("Проверка данных из ответа", () -> {
+            assertEquals("morpheus", response.getName());
+            assertEquals("leader", response.getJob());
+        });
+    }
 
-  @Test
-  @DisplayName("Проверка изменения данных пользователя")
-  void checkUpdateTest() {
-    CreateUserBodyModel createBody = new CreateUserBodyModel();
-    createBody.setName("morpheus");
-    createBody.setJob("zion resident");
+    @Test
+    @DisplayName("Проверка изменения данных пользователя")
+    void checkUpdateTest() {
+        CreateUserBodyModel createBody = new CreateUserBodyModel();
+        createBody.setName("morpheus");
+        createBody.setJob("zion resident");
 
-    CreateUserResponseModel response = step("Изменение данных пользователя", () ->
-            given(requestSpecification)
-                    .body(createBody)
-                    .when()
-                    .put("/users/2")
-                    .then()
-                    .spec(responseSpecification)
-                    .statusCode(200)
-                    .extract().as(CreateUserResponseModel.class)
-    );
+        CreateUserResponseModel response = step("Изменение данных пользователя", () ->
+                given(requestSpecification)
+                        .body(createBody)
+                        .when()
+                        .put("/users/2")
+                        .then()
+                        .spec(responseSpecification)
+                        .statusCode(200)
+                        .extract().as(CreateUserResponseModel.class)
+        );
 
-    step("Проверка данных из ответа", () -> {
-      assertEquals("morpheus", response.getName());
-      assertEquals("zion resident", response.getJob());
-    });
-  }
+        step("Проверка данных из ответа", () -> {
+            assertEquals("morpheus", response.getName());
+            assertEquals("zion resident", response.getJob());
+        });
+    }
 
-  @Test
-  @DisplayName("Проверка удаления пользователя")
-  void checkDeleteTest() {
-    step("Удаление пользователя", () ->
-            given(requestSpecification)
-                    .when()
-                    .delete("/users/65")
-                    .then()
-                    .spec(responseSpecification)
-                    .statusCode(204)
-    );
-  }
+    @Test
+    @DisplayName("Проверка удаления пользователя")
+    void checkDeleteTest() {
+        step("Удаление пользователя", () ->
+                given(requestSpecification)
+                        .when()
+                        .delete("/users/65")
+                        .then()
+                        .spec(responseSpecification)
+                        .statusCode(204)
+        );
+    }
 
 }
