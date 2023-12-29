@@ -14,7 +14,7 @@ import static specs.ReqresSpec.requestSpecification;
 import static specs.ReqresSpec.responseSpecification;
 
 @Owner("izolina")
-@Feature("User authorization")
+@Feature("Авторизация пользователя")
 public class AutorizationTests extends TestBase {
 
     @Test
