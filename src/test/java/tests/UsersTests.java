@@ -1,5 +1,7 @@
 package tests;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
 import models.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -7,11 +9,14 @@ import org.junit.jupiter.api.Test;
 import static io.qameta.allure.Allure.step;
 
 import static io.restassured.RestAssured.given;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static specs.ReqresSpec.requestSpecification;
 import static specs.ReqresSpec.responseSpecification;
 
-public class ReqresInTests extends TestBase {
+@Owner("izolina")
+@Feature("Actions with users")
+public class UsersTests extends TestBase {
 
   @Test
   @DisplayName("Получение списка пользователей")
@@ -35,11 +40,11 @@ public class ReqresInTests extends TestBase {
   @Test
   @DisplayName("Проверка создания пользователя")
   void checkCreateTest() {
-    CreateBodyModel createBody = new CreateBodyModel();
+    CreateUserBodyModel createBody = new CreateUserBodyModel();
     createBody.setName("morpheus");
     createBody.setJob("leader");
 
-    CreateResponseModel response = step("Создание пользователя", () ->
+    CreateUserResponseModel response = step("Создание пользователя", () ->
             given(requestSpecification)
                     .body(createBody)
                     .when()
@@ -47,7 +52,7 @@ public class ReqresInTests extends TestBase {
                     .then()
                     .spec(responseSpecification)
                     .statusCode(201)
-                    .extract().as(CreateResponseModel.class)
+                    .extract().as(CreateUserResponseModel.class)
     );
 
     step("Проверка данных из ответа", () -> {
@@ -59,11 +64,11 @@ public class ReqresInTests extends TestBase {
   @Test
   @DisplayName("Проверка изменения данных пользователя")
   void checkUpdateTest() {
-    CreateBodyModel createBody = new CreateBodyModel();
+    CreateUserBodyModel createBody = new CreateUserBodyModel();
     createBody.setName("morpheus");
     createBody.setJob("zion resident");
 
-    CreateResponseModel response = step("Изменение данных пользователя", () ->
+    CreateUserResponseModel response = step("Изменение данных пользователя", () ->
             given(requestSpecification)
                     .body(createBody)
                     .when()
@@ -71,7 +76,7 @@ public class ReqresInTests extends TestBase {
                     .then()
                     .spec(responseSpecification)
                     .statusCode(200)
-                    .extract().as(CreateResponseModel.class)
+                    .extract().as(CreateUserResponseModel.class)
     );
 
     step("Проверка данных из ответа", () -> {
@@ -91,28 +96,6 @@ public class ReqresInTests extends TestBase {
                     .spec(responseSpecification)
                     .statusCode(204)
     );
-  }
-
-  @Test
-  @DisplayName("Проверка неуспешной авторизации без пароля")
-  void checkLoginUnsuccessfulTest() {
-    LoginBodyModel loginBody = new LoginBodyModel();
-    loginBody.setEmail("peter@klaven");
-
-    ErrorModel response = step("Вызов метода авторищации", () ->
-            given(requestSpecification)
-                    .body(loginBody)
-                    .when()
-                    .post("/login")
-                    .then()
-                    .spec(responseSpecification)
-                    .statusCode(400)
-                    .extract().as(ErrorModel.class)
-    );
-
-    step("Проверка данных из ответа", () -> {
-      assertEquals("Missing password", response.getError());
-    });
   }
 
 }
