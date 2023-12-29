@@ -27,7 +27,7 @@
 <a href="https://www.jenkins.io/"><img width="6%" title="Jenkins" src="media/logo/Jenkins.svg"></a>
 <a href="https://allurereport.org/"><img width="6%" title="Allure Report" src="media/logo/Allure_Report.svg"></a>
 </p>
-В данном проекте автотесты написаны на <code>Java</code> для API-тестов.
+В данном проекте автотесты написаны на <code>Java</code>.
 
 ## Покрытый функционал
 
