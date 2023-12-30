@@ -35,9 +35,8 @@ public class AutorizationTests extends TestBase {
                         .extract().as(LoginResponseModel.class)
         );
 
-        step("Проверка данных из ответа", () -> {
-            assertEquals("QpwL5tke4Pnpja7X4", response.getToken());
-        });
+        step("Проверка данных из ответа", () ->
+                assertEquals("QpwL5tke4Pnpja7X4", response.getToken()));
     }
 
     @Test
@@ -57,9 +56,8 @@ public class AutorizationTests extends TestBase {
                         .extract().as(ErrorModel.class)
         );
 
-        step("Проверка данных из ответа", () -> {
-            assertEquals("Missing password", response.getError());
-        });
+        step("Проверка данных из ответа", () ->
+                assertEquals("Missing password", response.getError()));
     }
 
 }
