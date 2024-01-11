@@ -24,6 +24,7 @@
 <a href="https://github.com/"><img width="6%" title="GitHub" src="media/logo/GitHub.svg"></a>
 <a href="https://junit.org/junit5/"><img width="6%" title="JUnit5" src="media/logo/JUnit5.svg"></a>
 <a href="https://gradle.org/"><img width="6%" title="Gradle" src="media/logo/Gradle.svg"></a>
+<a href="https://rest-assured.io/"><img width="6%" title="Gradle" src="media/logo/RestAssured.png"/></a>
 <a href="https://www.jenkins.io/"><img width="6%" title="Jenkins" src="media/logo/Jenkins.svg"></a>
 <a href="https://allurereport.org/"><img width="6%" title="Allure Report" src="media/logo/Allure_Report.svg"></a>
 </p>
@@ -31,6 +32,7 @@
 Автотесты в этом проекте написаны на <code>Java</code>.\
 <code>JUnit5</code> — для выполнения тестов.\
 <code>Gradle</code> — используется как инструмент автоматизации сборки.\
+<code>REST Assured</code> — для тестирования REST-API сервисов.\
 <code>Jenkins</code> — CI/CD для запуска тестов удаленно.\
 <code>Allure Report</code> — для визуализации результатов тестирования.\
 
