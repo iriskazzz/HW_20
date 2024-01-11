@@ -29,12 +29,12 @@
 <a href="https://allurereport.org/"><img width="6%" title="Allure Report" src="media/logo/Allure_Report.svg"></a>
 </p>
 
-Автотесты в этом проекте написаны на <code>Java</code>.\
-<code>JUnit5</code> — для выполнения тестов.\
-<code>Gradle</code> — используется как инструмент автоматизации сборки.\
-<code>REST Assured</code> — для тестирования REST-API сервисов.\
-<code>Jenkins</code> — CI/CD для запуска тестов удаленно.\
-<code>Allure Report</code> — для визуализации результатов тестирования.\
+> Автотесты в этом проекте написаны на <code>Java</code>.\
+> <code>JUnit5</code> — для выполнения тестов.\
+> <code>Gradle</code> — используется как инструмент автоматизации сборки.\
+> <code>REST Assured</code> — для тестирования REST-API сервисов.\
+> <code>Jenkins</code> — CI/CD для запуска тестов удаленно.\
+> <code>Allure Report</code> — для визуализации результатов тестирования.\
 
 ## Покрытый функционал
 
