@@ -27,7 +27,12 @@
 <a href="https://www.jenkins.io/"><img width="6%" title="Jenkins" src="media/logo/Jenkins.svg"></a>
 <a href="https://allurereport.org/"><img width="6%" title="Allure Report" src="media/logo/Allure_Report.svg"></a>
 </p>
-В данном проекте автотесты написаны на <code>Java</code>.
+
+Автотесты в этом проекте написаны на <code>Java</code>.\
+<code>JUnit5</code> — для выполнения тестов.\
+<code>Gradle</code> — используется как инструмент автоматизации сборки.\
+<code>Jenkins</code> — CI/CD для запуска тестов удаленно.\
+<code>Allure Report</code> — для визуализации результатов тестирования.\
 
 ## Покрытый функционал
 
